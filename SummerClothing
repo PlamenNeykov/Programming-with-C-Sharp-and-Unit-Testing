@@ -1,0 +1,68 @@
+int temperature = int.Parse(Console.ReadLine());
+string timeOfDay = Console.ReadLine();
+
+string Clothing = "", Shoes = "";
+
+if (10 <= temperature && temperature <= 18)
+{
+    if (timeOfDay == "Morning")
+    {
+        Clothing = "Sweatshirt";
+        Shoes = "Sneakers";
+    }
+    else if (timeOfDay == "Afternoon")
+    {
+        Clothing = "Shirt";
+        Shoes = "Moccasins";
+
+    }
+    else if (timeOfDay == "Evening")
+    {
+        Clothing = "Shirt";
+        Shoes = "Moccasins";
+
+    }
+}
+else if (18 < temperature && temperature <= 24)
+{
+    if (timeOfDay == "Morning")
+    {
+        Clothing = "Shirt";
+        Shoes = "Moccasins";
+    }
+    else if (timeOfDay == "Afternoon")
+    {
+        Clothing = "T-Shirt";
+        Shoes = "Sandals";
+
+    }
+    else if (timeOfDay == "Evening")
+    {
+        Clothing = "Shirt";
+        Shoes = "Moccasins";
+
+    }
+
+}
+else if (temperature >= 25)
+{
+    if (timeOfDay == "Morning")
+    {
+        Clothing = "T-Shirt";
+        Shoes = "Sandals";
+    }
+    else if (timeOfDay == "Afternoon")
+    {
+        Clothing = "Swim Suit";
+        Shoes = "Barefoot";
+
+    }
+    else if (timeOfDay == "Evening")
+    {
+        Clothing = "Shirt";
+        Shoes = "Moccasins";
+    }
+
+}
+
+Console.WriteLine($"It's {temperature} degrees, get your {Clothing} and {Shoes}.");
