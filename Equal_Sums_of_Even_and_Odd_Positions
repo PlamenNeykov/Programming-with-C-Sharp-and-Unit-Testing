@@ -1,0 +1,45 @@
+namespace _02
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            int firstNum = int.Parse(Console.ReadLine());
+            int secondNum = int.Parse(Console.ReadLine());
+
+            int evenSum = 0;
+            int oddSum = 0;
+
+
+            for (int i = firstNum; i <= secondNum; i++)
+            {
+                string numToString = i.ToString();
+
+                for (int k = 0; k<=5; k++)
+                {
+                    
+                    int currentDigit = int.Parse(numToString[k].ToString());
+
+                    if (k % 2 == 0)
+                    {
+                        oddSum = oddSum + currentDigit;
+                    }
+                    else
+                    {
+                        evenSum = evenSum + currentDigit;
+                    }
+
+                }
+
+                if (evenSum == oddSum)
+                {
+                    Console.Write(i + " ");
+                }
+
+                evenSum = 0;
+                oddSum = 0;
+            }
+
+        }
+    }
+}
