@@ -1,0 +1,25 @@
+namespace _09
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            int secundsOne = int.Parse(Console.ReadLine());
+            int secundsTwo = int.Parse(Console.ReadLine());
+            int secundsThree = int.Parse(Console.ReadLine());
+
+            int sum = secundsOne + secundsTwo + secundsThree;
+
+            int min = sum / 60;
+            int secundsRest = sum - (min * 60);
+            if (secundsRest <= 9)
+            {
+                Console.WriteLine(String.Format("{0}:0{1}", min, secundsRest));
+            }
+            else
+            {
+                Console.WriteLine(String.Format("{0}:{1}", min, secundsRest));
+            }
+        }
+    }
+}
