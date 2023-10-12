@@ -1,0 +1,65 @@
+// 7.	Greater of Two Values
+using System;
+
+string typeOfInput = Console.ReadLine();
+string firstInput = Console.ReadLine();
+string seccondInput = Console.ReadLine();
+
+greaterOfTwoValues(typeOfInput, firstInput, seccondInput);
+
+static void greaterOfTwoValues (string type, string first, string seccond)
+{
+    if (type.Equals("int"))
+    {
+        int firstValue = int.Parse(first);
+        int seccondValue = int.Parse(seccond);
+        if (firstValue > seccondValue)
+        {
+            Console.WriteLine(firstValue);
+        } else if (seccondValue > firstValue)
+        {
+            Console.WriteLine(seccondValue);
+        } else
+        {
+            Console.WriteLine(firstValue);
+        }
+
+    }
+    else if (type.Equals("char"))
+    {
+        char firstChar = first[0];
+        char seccondChar = seccond[0];
+
+        if (firstChar > seccondChar)
+        {
+            Console.WriteLine(firstChar);
+        }
+        else if (firstChar < seccondChar)
+        {
+            Console.WriteLine(seccondChar);
+        }
+        else
+        {
+            Console.WriteLine("Both characters are equal.");
+        }
+
+    }
+    else if (type.Equals("string"))
+    {
+        int result = string.Compare(first, seccond);
+
+        if (result < 0)
+        {
+            Console.WriteLine(seccond);
+        }
+        else if (result > 0)
+        {
+            Console.WriteLine(first);
+        }
+        else
+        {
+            Console.WriteLine("Both strings are equal.");
+        }
+
+    }
+}
