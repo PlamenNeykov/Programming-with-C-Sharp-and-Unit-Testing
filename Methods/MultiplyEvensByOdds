@@ -1,0 +1,52 @@
+using System.Security.Cryptography;
+
+int input = int.Parse(Console.ReadLine());
+int intNum = Math.Abs(input);
+
+string stringValue = intNum.ToString();
+
+char[] charsDigits = stringValue.ToCharArray();
+
+getMultipleOfEvenAndOdds(charsDigits);
+
+static int getSumOfEvenDigits(char[] c)
+{
+    int evenSum = 0;
+    for (int i = 0; i < c.Length; i++)
+    {
+        int currentNum = int.Parse(Char.ToString(c[i]));
+
+        if (currentNum % 2 == 0)
+        {
+            evenSum += currentNum;
+        }
+    }
+
+    return evenSum;
+
+}
+
+static int getSumOfOddDigits(char[] c)
+{
+    int oddSum = 0;
+    for (int i = 0; i < c.Length; i++)
+    {
+        int currentNum = int.Parse(Char.ToString(c[i]));
+
+        if (currentNum % 2 != 0)
+        {
+            oddSum += currentNum;
+        }
+    }
+
+    return oddSum;
+
+}
+
+static void getMultipleOfEvenAndOdds(char[] c){
+    int resultToPrint = getSumOfEvenDigits(c) * getSumOfOddDigits(c);
+    Console.WriteLine(resultToPrint);
+}
+
+
+
