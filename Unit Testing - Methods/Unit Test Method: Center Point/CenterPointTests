@@ -1,0 +1,87 @@
+using System;
+using NUnit.Framework;
+
+namespace TestApp.Tests;
+
+public class CenterPointTests
+{
+    [Test]
+    public void Test_GetClosest_WhenFirstPointIsCloser_ShouldReturnFirstPoint()
+    {
+        // Arrange
+        double firstPointX = 1.1;
+        double firstPointY = 1.1;
+        double secondPointX = 2.2;
+        double secondPointY = 2.2;
+
+        // Act
+        string closestPoint = CenterPoint.GetClosest(firstPointX, firstPointY, secondPointX, secondPointY);
+
+        // Assert
+        Assert.AreEqual("(1.1, 1.1)", closestPoint);
+    }
+
+    [Test]
+    public void Test_GetClosest_WhenSecondPointIsCloser_ShouldReturnSecondPoint()
+    {
+        // Arrange
+        double firstPointX = 3.3;
+        double firstPointY = 3.3;
+        double secondPointX = 2.2;
+        double secondPointY = 2.2;
+
+        // Act
+        string closestPoint = CenterPoint.GetClosest(firstPointX, firstPointY, secondPointX, secondPointY);
+
+        // Assert
+        Assert.AreEqual("(2.2, 2.2)", closestPoint);
+    }
+
+    [Test]
+    public void Test_GetClosest_WhenBothPointsHaveEqualDistance_ShouldReturnFirstPoint()
+    {
+        // Arrange
+        double firstPointX = 3.3;
+        double firstPointY = 3.3;
+        double secondPointX = 3.3;
+        double secondPointY = 3.3;
+
+        // Act
+        string closestPoint = CenterPoint.GetClosest(firstPointX, firstPointY, secondPointX, secondPointY);
+
+        // Assert
+        Assert.AreEqual("(3.3, 3.3)", closestPoint);
+    }
+
+    [Test]
+    public void Test_GetClosest_WhenFirstPointIsNegative_ShouldReturnFirstPoint()
+    {
+        // Arrange
+        double firstPointX = -3.3;
+        double firstPointY = -3.3;
+        double secondPointX = 3.3;
+        double secondPointY = 3.3;
+
+        // Act
+        string closestPoint = CenterPoint.GetClosest(firstPointX, firstPointY, secondPointX, secondPointY);
+
+        // Assert
+        Assert.AreEqual("(-3.3, -3.3)", closestPoint);
+    }
+
+    [Test]
+    public void Test_GetClosest_WhenSecondPointIsNegative_ShouldReturnSecondPoint()
+    {
+        // Arrange
+        double firstPointX = 3.3;
+        double firstPointY = 3.3;
+        double secondPointX = -3.3;
+        double secondPointY = -3.3;
+
+        // Act
+        string closestPoint = CenterPoint.GetClosest(firstPointX, firstPointY, secondPointX, secondPointY);
+
+        // Assert
+        Assert.AreEqual("(-3.3, -3.3)", closestPoint);
+    }
+}
