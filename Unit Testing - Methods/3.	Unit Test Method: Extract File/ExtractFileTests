@@ -1,0 +1,66 @@
+using NUnit.Framework;
+using System;
+
+namespace TestApp.Tests;
+
+public class ExtractFileTests
+{
+    [Test]
+    public void Test_GetFile_NullPath_ThrowsArgumentNullException()
+    {
+        // Arrange
+        string path = null;
+        // Act & Assert
+
+        Assert.That(() => ExtractFile.GetFile(path), Throws.ArgumentNullException);
+    }
+
+    [Test]
+    public void Test_GetFile_EmptyPath_ThrowsArgumentNullException()
+    {
+        // Arrange
+        string path = "";
+        // Act & Assert
+
+        Assert.That(() => ExtractFile.GetFile(path), Throws.ArgumentNullException);
+    }
+
+    [Test]
+    public void Test_GetFile_ValidPath_ReturnsFileNameAndExtension()
+    {
+        // Arrange
+        string path = "text.txt";
+
+        // Act
+        string toTest = ExtractFile.GetFile(path);
+
+        // Assert
+        Assert.AreEqual("File name: text\nFile extension: txt", toTest);
+    }
+
+    [Test]
+    public void Test_GetFile_PathWithNoExtension_ReturnsFileNameOnly()
+    {
+        // Arrange
+        string path = "text";
+
+        // Act
+        string toTest = ExtractFile.GetFile(path);
+
+        // Assert
+        Assert.AreEqual("File name: text", toTest);
+    }
+
+    [Test]
+    public void Test_GetFile_PathWithSpecialCharacters_ReturnsFileNameAndExtension()
+    {
+        // Arrange
+        string path = "text\\###\\filename.doc";
+
+        // Act
+        string toTest = ExtractFile.GetFile(path);
+
+        // Assert
+        Assert.AreEqual("File name: filename\nFile extension: doc", toTest);
+    }
+}
