@@ -1,0 +1,41 @@
+namespace Task2
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            int[] inputArr = Console.ReadLine()
+                        .Split()
+                        .Select(int.Parse)
+                        .ToArray();
+            int countOfRotation = int.Parse(Console.ReadLine());
+
+            List<int> numbers = new List<int>();
+
+            for (int i = 0; i < inputArr.Length; i++)
+            {
+                numbers.Add(inputArr[i]);
+            }
+
+           for (int i = 0; i < countOfRotation; i++)
+            {
+                int workNum = numbers[numbers.Count - 1];
+                numbers.RemoveAt(numbers.Count - 1);
+                numbers.Insert(0, workNum);
+
+            }
+            
+
+            for (int i = 0; i < numbers.Count; i++)
+            {
+                if (i == numbers.Count - 1){
+                    Console.Write(numbers[i]); 
+                        }
+                else Console.Write(numbers[i] + ", ");
+                
+            }
+
+
+        }
+    }
+}
