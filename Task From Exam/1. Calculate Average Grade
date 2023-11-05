@@ -1,0 +1,22 @@
+namespace Task1
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            int countOfStudents = int.Parse(Console.ReadLine());
+            
+            double gradesSum = 0;
+            for (int i = 0; i < countOfStudents; i++)
+            {
+                double currentGrade = double.Parse(Console.ReadLine());
+                gradesSum += currentGrade;
+            }
+
+            double averageGrade = gradesSum / countOfStudents;
+            string toPrint = $"{averageGrade:0.00}";
+            Console.WriteLine(toPrint);
+
+        }
+    }
+}
