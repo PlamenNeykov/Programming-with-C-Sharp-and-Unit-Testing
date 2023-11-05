@@ -1,0 +1,77 @@
+using NUnit.Framework;
+using System;
+
+namespace TestApp.Tests;
+
+public class CharacterRangeTests
+{
+    [Test]
+    public void Test_GetRange_WithAAndBInOrder_ReturnsEmptyString()
+    {
+        // Arrange
+        char a = 'A';
+        char b = 'B';
+
+        // Act
+        string output = CharacterRange.GetRange(a, b);
+
+        // Assert
+        Assert.AreEqual("", output);
+    }
+
+    [Test]
+    public void Test_GetRange_WithBAndAInOrder_ReturnsEmptyString()
+    {
+        // Arrange
+        char a = 'B';
+        char b = 'A';
+
+        // Act
+        string output = CharacterRange.GetRange(a, b);
+
+        // Assert
+        Assert.AreEqual("", output);
+    }
+
+    [Test]
+    public void Test_GetRange_WithAAndCInOrder_ReturnsB()
+    {
+        // Arrange
+        char a = 'A';
+        char b = 'C';
+
+        // Act
+        string output = CharacterRange.GetRange(a, b);
+
+        // Assert
+        Assert.AreEqual("B", output);
+    }
+
+    [Test]
+    public void Test_GetRange_WithDAndGInOrder_Returns_E_F()
+    {
+        // Arrange
+        char a = 'D';
+        char b = 'G';
+
+        // Act
+        string output = CharacterRange.GetRange(a, b);
+
+        // Assert
+        Assert.AreEqual("E F", output);
+    }
+
+    [Test]
+    public void Test_GetRange_WithXAndZInOrder_Returns_Y()
+    {
+        // Arrange
+        char a = 'X';
+        char b = 'Z';
+
+        // Act
+        string output = CharacterRange.GetRange(a, b);
+
+        // Assert
+        Assert.AreEqual("Y", output);
+    }
+}
