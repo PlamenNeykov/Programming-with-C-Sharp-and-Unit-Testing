@@ -1,0 +1,30 @@
+namespace _01
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+
+        {
+            string[] input = Console.ReadLine().Split(" ");
+            SortedDictionary<string, int> testDic = new ();
+
+            for (int i = 0;  i < input.Length; i++)
+            {
+                if (testDic.ContainsKey(input[i])) {
+                    testDic[input[i]]++;
+                } else
+                {
+                    testDic.Add(input[i], 1);
+                }
+            }
+
+            foreach (KeyValuePair<string, int> pair in testDic)
+            {
+                Console.WriteLine(pair.Key + " -> " + pair.Value);
+            }
+
+
+            
+        }
+    }
+}
