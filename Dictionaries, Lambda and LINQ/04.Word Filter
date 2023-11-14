@@ -1,0 +1,19 @@
+namespace _05
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            string[] input = Console.ReadLine().Split(" ");
+
+            var selected = input.Where(x => x.Length % 2 == 0).ToArray();
+
+            foreach (var toPrint in selected)
+            {
+                Console.WriteLine(toPrint);
+            }
+
+            
+        }
+    }
+}
