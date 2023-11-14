@@ -1,0 +1,34 @@
+namespace _02
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            string[] input = Console.ReadLine().Split(" ");
+            Dictionary<string, int> elementsFromSequence = new();
+
+            for (int i = 0; i < input.Length; i++)
+            {
+                if (elementsFromSequence.ContainsKey(input[i].ToLower()))
+                {
+                    elementsFromSequence[input[i].ToLower()]++;
+                }
+                else
+                {
+                    elementsFromSequence.Add(input[i].ToLower(), 1);
+                }
+            }
+
+            foreach (KeyValuePair<string, int> pair in elementsFromSequence)
+            {
+                if (pair.Value%2 != 0)
+                {
+                    Console.Write(pair.Key + " ");
+                }
+                
+            }
+
+
+        }
+    }
+}
