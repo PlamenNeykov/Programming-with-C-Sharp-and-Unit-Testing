@@ -1,0 +1,47 @@
+using System.Xml.Linq;
+
+namespace Task2
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            int countOfSongs = int.Parse(Console.ReadLine());
+            List<Song> songsData = new List<Song>();
+
+            for (int i = 0; i<countOfSongs; i++)
+            {
+                string[] currentSong = Console.ReadLine().Split("_");
+
+                string typeList = currentSong[0];
+                string name = currentSong[1];
+                string time = currentSong[2];
+
+                Song song = new Song();
+                song.TypeList = typeList;
+                song.Name = name;
+                song.Time = time;
+
+                songsData.Add(song);
+
+            }
+
+            string command = Console.ReadLine();
+
+            if (command.Equals("all"))
+            {
+                foreach (Song song in songsData)
+                {
+                    Console.WriteLine(song.Name);
+                }
+            } else
+            {
+                List<Song> sortedSongs = songsData.Where(s => s.TypeList == command).ToList();
+                foreach (Song song in sortedSongs)
+                {
+                    Console.WriteLine(song.Name);
+                }
+            }
+        }
+    }
+}
