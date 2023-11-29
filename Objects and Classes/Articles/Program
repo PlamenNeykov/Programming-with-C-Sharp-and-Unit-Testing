@@ -1,0 +1,42 @@
+namespace Articles
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            string input = Console.ReadLine();
+            string title = input.Split(", ")[0];
+            string content = input.Split(", ")[1];
+            string author = input.Split(", ")[2];
+
+            Article article = new Article(title, content, author);
+
+            int countCommands = int.Parse(Console.ReadLine());
+
+            for (int i = 0; i<countCommands; i++)
+            {
+                string commandAndText = Console.ReadLine();
+                string command = commandAndText.Split(": ")[0];
+                string text = commandAndText.Split(": ")[1];
+
+                if (command == "Edit")
+                {
+                    article.Edit(text);
+                } 
+                
+                else if (command == "ChangeAuthor")
+                {
+                    article.ChangeAuthor(text);
+                }
+                
+                else if (command == "Rename")
+                {
+                    article.Rename(text);
+                }
+
+            }
+
+            Console.WriteLine(article.ToString());
+        }
+    }
+}
