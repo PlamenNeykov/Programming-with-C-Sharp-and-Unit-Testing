@@ -1,0 +1,113 @@
+using System.Collections;
+using System.Collections.Generic;
+using Microsoft.VisualBasic;
+using NUnit.Framework;
+
+namespace TestApp.Tests;
+
+[TestFixture]
+public class DictionaryIntersectionTests
+{
+    [Test]
+    public void Test_Intersect_TwoEmptyDictionaries_ReturnsEmptyDictionary()
+    {
+        // Arrange
+        Dictionary<string, int> dict1 = new Dictionary<string, int>();
+        Dictionary< string, int> dict2 = new Dictionary<string, int>();
+        
+        // Act
+        Dictionary<string, int> resiult =  DictionaryIntersection.Intersect (dict1, dict2);
+
+        // Assert
+        Assert.AreEqual( 0 , resiult.Count);
+    }
+
+    [Test]
+    public void Test_Intersect_OneEmptyDictionaryAndOneNonEmptyDictionary_ReturnsEmptyDictionary()
+    {
+        // Arrange
+        Dictionary<string, int> dict1 = new()
+        {
+            {"one",1},
+            {"two",2},
+            {"three",3}
+        };
+        Dictionary<string, int> dict2 = new Dictionary<string, int>();
+
+        // Act
+        Dictionary<string, int> resiult = DictionaryIntersection.Intersect(dict1, dict2);
+
+        // Assert
+        Assert.AreEqual(0, resiult.Count);
+    }
+
+    [Test]
+    public void Test_Intersect_TwoNonEmptyDictionariesWithNoCommonKeys_ReturnsEmptyDictionary()
+    {
+        Dictionary<string, int> dict1 = new()
+        {
+            {"one",1},
+            {"two",2},
+            {"three",3}
+        };
+        Dictionary<string, int> dict2 = new()
+        {
+            {"one_A",1},
+            {"two_A",2},
+            {"three_A",3}
+
+        };
+
+        // Act
+        Dictionary<string, int> resiult = DictionaryIntersection.Intersect(dict1, dict2);
+
+        // Assert
+        Assert.AreEqual(0, resiult.Count);
+    }
+
+    [Test]
+    public void Test_Intersect_TwoNonEmptyDictionariesWithCommonKeysAndValues_ReturnsIntersectionDictionary()
+    {
+        Dictionary<string, int> dict1 = new()
+        {
+            {"one",1},
+            {"two",2},
+            {"three",3}
+        };
+        Dictionary<string, int> dict2 = new()
+        {
+            {"one",1},
+            {"two",2},
+            {"three",3}
+        };
+
+        // Act
+        Dictionary<string, int> resiult = DictionaryIntersection.Intersect(dict1, dict2);
+
+        // Assert
+        Assert.AreEqual(3, resiult.Count);
+    }
+
+    [Test]
+    public void Test_Intersect_TwoNonEmptyDictionariesWithCommonKeysAndDifferentValues_ReturnsEmptyDictionary()
+    {
+        Dictionary<string, int> dict1 = new()
+        {
+            {"one",1},
+            {"two",2},
+            {"three",3}
+        };
+        Dictionary<string, int> dict2 = new()
+        {
+            {"one",11},
+            {"two",21},
+            {"three",31}
+        };
+
+        // Act
+        Dictionary<string, int> resiult = DictionaryIntersection.Intersect(dict1, dict2);
+
+        // Assert
+        Assert.AreEqual(0, resiult.Count);
+    }
+}
