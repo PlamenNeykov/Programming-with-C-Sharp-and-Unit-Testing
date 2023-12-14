@@ -1,0 +1,107 @@
+using NUnit.Framework;
+using System;
+using System.Reflection;
+using TestApp.Product;
+
+namespace TestApp.Tests;
+
+[TestFixture]
+public class ProductInventoryTests
+{
+    private ProductInventory _inventory = null!;
+    
+    [SetUp]
+    public void SetUp()
+    {
+        this._inventory = new();
+    }
+    
+    [Test]
+    public void Test_AddProduct_ProductAddedToInventory()
+    {
+        // Arrange
+        string article = "Kofa";
+        double price = 2.48;
+        int quantity = 1;
+
+        string expected = $"Product Inventory:{Environment.NewLine}" + $"{article} - Price: ${price:f2} - Quantity: {quantity}";
+        // Act
+        this._inventory.AddProduct(article, price, quantity);
+        string result = this._inventory.DisplayInventory();
+
+        // Assert
+        Assert.AreEqual( expected , result);
+    }
+
+    [Test]
+    public void Test_DisplayInventory_NoProducts_ReturnsEmptyString()
+    {
+        // Arange
+        string expected = $"Product Inventory:"; 
+
+        // Act
+        string result = this._inventory.DisplayInventory();
+
+        // Assert
+        Assert.AreEqual( expected, result );
+        
+    }
+
+    [Test]
+    public void Test_DisplayInventory_WithProducts_ReturnsFormattedInventory()
+    {
+        string article = "Kofa";
+        double price = 2.48;
+        int quantity = 1;
+
+        string article_2 = "Pompa";
+        double price_2 = 4.48;
+        int quantity_2 = 1;
+
+        string expected = $"Product Inventory:{Environment.NewLine}" + $"{article} - Price: ${price:f2} - Quantity: {quantity}{Environment.NewLine}" + 
+                          $"{article_2} - Price: ${price_2:f2} - Quantity: {quantity_2}";
+        // Act
+        this._inventory.AddProduct(article, price, quantity);
+        this._inventory.AddProduct(article_2 , price_2, quantity_2);
+
+        string result = this._inventory.DisplayInventory();
+
+        // Assert
+        Assert.AreEqual(expected, result);
+    }
+
+    [Test]
+    public void Test_CalculateTotalValue_NoProducts_ReturnsZero()
+    {
+        // Arange
+
+        // Act
+        double result = this._inventory.CalculateTotalValue();
+
+        // Assert
+        Assert.AreEqual( 0, result );
+    }
+
+    [Test]
+    public void Test_CalculateTotalValue_WithProducts_ReturnsTotalValue()
+    {
+        string article = "Kofa";
+        double price = 2;
+        int quantity = 2;
+
+        string article_2 = "Pompa";
+        double price_2 = 4;
+        int quantity_2 = 1;
+
+        double expected = 8;
+
+        // Act
+        this._inventory.AddProduct(article, price, quantity);
+        this._inventory.AddProduct(article_2, price_2, quantity_2);
+
+        double result = this._inventory.CalculateTotalValue();
+
+        // Assert
+        Assert.AreEqual(expected, result);
+    }
+}
